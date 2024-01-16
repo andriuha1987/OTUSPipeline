@@ -1,0 +1,11 @@
+---
+    
+- scm:
+    name: git-autotests
+    scm:
+    - git:
+        url: https://github.com/andriuha1987/OTUSPipeline.git
+        credentials-id: jenkins
+        branches:
+        - FETCH_HEAD
+        refspec: ${BRANCH}

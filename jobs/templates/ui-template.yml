@@ -1,0 +1,40 @@
+- job-template:
+    name: 'autotests'
+    description: 'Running autotests'
+    project-type: pipeline
+    concurrent: true
+    logrotate:
+      daysToKeep: 30
+      numToKeep: 10
+    parameters:
+      - string:
+          name: BRANCH
+          default: main
+          description: "Branch"
+      - text:
+          name: YAML_CONFIG
+          default: |
+            BASE_URL: https://otus.ru
+            BROWSER_NAME: chrome
+            BROWSER_VERSION: 119.0
+            SELENOID_ENABLED: true
+            SELENOID_URL: http://172.17.0.1:4444/wd/hub/
+      - bool:
+          name: API
+          default: false
+      - bool:
+          name: STUB
+          default: false
+      - bool:
+          name: UI
+          default: false
+      - bool:
+          name: MOBILE
+          default: false
+    pipeline-scm:
+      scm:
+        - git-autotests
+      script-path: jenkins/runner.groovy  
+            
+        
+    
